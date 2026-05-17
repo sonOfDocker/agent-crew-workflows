@@ -34,6 +34,9 @@ Reviewer Agent
         ↓
 Human Approval / Commit
 ```
+## Phase Usage
+
+By default, stories should pass through each phase. For very small documentation-only or configuration-only changes, a phase may be lightweight, but it should not be silently skipped. If a phase is not applicable, the handoff should state why.
 
 ## Phase 1: Idea or Rough Requirement
 
@@ -59,6 +62,7 @@ Possible inputs include:
 ### Outputs
 
 The output of this phase is a rough work item that can be refined into a clear story.
+- Refined story body or story markdown file
 
 ### Quality Bar
 
@@ -101,6 +105,7 @@ The Story Refiner Agent should produce:
 - Open questions
 - Assumptions
 - Definition of done
+- Architecture notes
 
 ### Quality Bar
 
@@ -144,6 +149,8 @@ The Architect Agent should produce:
 - Data flow or integration notes
 - ADR recommendation if needed
 - Handoff notes for the Test Strategy Agent and Developer Agent
+- Test strategy notes
+
 
 ### Quality Bar
 
@@ -185,6 +192,7 @@ The Test Strategy Agent should produce:
 - Edge cases
 - Regression risks
 - Manual verification steps if appropriate
+- Implementation summary
 
 ### Quality Bar
 
@@ -227,6 +235,8 @@ The Developer Agent should produce:
 - Implementation notes
 - Verification notes
 - Known limitations or follow-up recommendations
+- Review report
+
 
 ### Quality Bar
 
@@ -248,6 +258,8 @@ Evaluate whether the completed work satisfies the story and is ready for human a
 ### Primary Agent
 
 Reviewer Agent
+
+The Reviewer Agent should evaluate the actual diff, test results, and implementation notes against the original story. The review should not rely only on the Developer Agent’s summary.
 
 ### Inputs
 
@@ -272,6 +284,7 @@ The Reviewer Agent should produce:
 - Required fixes
 - Optional improvements
 - Recommendation
+- Final commit message
 
 ### Quality Bar
 
@@ -391,3 +404,22 @@ A workflow run is complete when:
 - Review has been completed
 - Human approval has been given
 - The final commit message is ready
+
+## Workflow Non-Goals
+
+This workflow does not yet define:
+
+- Full CrewAI implementation details
+- Model/provider selection
+- Token or cost management strategy
+- GitHub automation details
+- CI/CD integration
+- MCP server integration
+- Autonomous commit or merge behavior
+## MVP Scope
+
+For the initial MVP, this workflow is documentation-first and human-supervised.
+
+The workflow defines the expected phases, inputs, outputs, handoffs, and review gates for an agent-assisted development process. It does not yet require full automation, autonomous GitHub issue updates, automatic commits, or CI/CD integration.
+
+Future stories may automate parts of this workflow after the contract is stable.

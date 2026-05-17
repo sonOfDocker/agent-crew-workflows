@@ -36,6 +36,8 @@ Example files should be safe to commit.
 
 Do not include real secrets, private project data, credentials, API keys, or sensitive information in this directory.
 
+Generated workflow outputs should only be committed when they are intentionally curated examples.
+
 ## Current Status
 
 This directory is reserved for sample workflow assets.

@@ -42,7 +42,9 @@ Expected future scripts include:
 
 ## Generated Files
 
-Generated files should usually not be committed unless they are examples.
+Generated files should usually not be committed unless they are intentionally curated examples.
+
+Temporary workflow outputs should be reproducible from committed source files and ignored by default.
 
 Common generated files may include:
 
@@ -52,8 +54,19 @@ Common generated files may include:
 
 These files are ignored by default in `.gitignore`.
 
+## Usage Expectations
+
+Unless a script documents otherwise, run scripts from the repository root.
+
+Examples:
+
+```bash
+./scripts/build-context.sh
+./scripts/build-context.ps1
+```
+
 ## Current Status
 
-No production scripts are active yet.
+This directory currently provides early workflow helper scripts for building local context bundles.
 
-This directory is reserved for context bundling and workflow helper scripts that will be added in later stories.
+The initial focus is context bundling. Future stories may add story input preparation, validation helpers, GitHub issue export helpers, and CrewAI execution wrappers.

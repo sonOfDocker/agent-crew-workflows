@@ -18,6 +18,8 @@ Potential MCP integrations may include:
 - Project management tools
 - Knowledge base tools
 
+Initial workflows should rely on prepared context bundles before granting agents direct MCP tool access.
+
 ## Safety Principles
 
 MCP integrations should follow these principles:

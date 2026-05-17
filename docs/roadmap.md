@@ -36,7 +36,7 @@ This milestone creates the baseline repo content needed before implementing Crew
 
 - README.md
 - docs/agent-roles.md
-- docs/workflow.md
+- docs/workflow-overview.md
 - docs/roadmap.md
 - templates/story-template.md
 - .env.example
@@ -102,6 +102,7 @@ This milestone should standardize how a story file or GitHub issue body becomes 
 - docs/story-contract.md
 - examples/stories/example-story.md
 - templates/story-template.md
+- crews/story_readiness/README.md
 
 ### Done When
 
@@ -168,7 +169,7 @@ This milestone should introduce the full sequence of agents defined in the workf
 - crews/development/crew.py
 - crews/development/main.py
 - docs/agent-handoffs.md
-- docs/workflow.md
+- docs/workflow-overview.md
 
 ### Done When
 
@@ -286,6 +287,18 @@ Future ideas include:
 
 ## Current Focus
 
-The current focus is Milestone 1: Foundation.
+The current focus is completing Milestone 1: Foundation and ensuring the baseline workflow documents are clear, reviewable, and aligned.
 
-Do not jump into CrewAI automation before the foundational workflow documents are in place.
+CrewAI automation should not begin until the foundational workflow documents, story template, agent roles, and roadmap have been reviewed and accepted.Mi
+
+## MVP Direction
+
+The first MVP is a local, human-approved agent workflow that can:
+
+- Read a project context bundle.
+- Read a story written in the standard story template.
+- Run a small story refinement or readiness workflow.
+- Produce reviewable markdown output.
+- Leave all code changes, commits, merges, and external system updates under human control.
+
+The MVP is not intended to autonomously modify repositories, merge pull requests, or update GitHub state.

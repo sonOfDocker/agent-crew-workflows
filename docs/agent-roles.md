@@ -14,6 +14,10 @@ Each agent should have a clear responsibility, a clear handoff, and clear limits
 
 The workflow should avoid blurred ownership between planning, architecture, testing, implementation, and review.
 
+## Current MVP Status
+
+For the initial MVP, these roles define the expected workflow contract only. They do not imply that all agents are currently automated, implemented, or integrated with external tools.
+
 ## Initial Agent Workflow
 
 ```text
@@ -86,6 +90,8 @@ Typical outputs include:
 - Open questions
 - Definition of done
 
+Expected handoff artifact: refined-story.md or GitHub issue body.
+
 ### Quality Bar
 
 A story is ready to hand off when:
@@ -149,6 +155,8 @@ Typical outputs include:
 - Suggested test focus areas
 - ADR recommendation if needed
 
+Expected handoff artifact: architecture-notes.md.
+
 ### Quality Bar
 
 The architecture handoff is ready when:
@@ -209,6 +217,8 @@ Typical outputs include:
 - Recommended test cases
 - Edge cases
 - Manual verification steps if needed
+
+Expected handoff artifact: test-strategy.md.
 
 ### Quality Bar
 
@@ -273,6 +283,8 @@ Typical outputs include:
 - Implementation summary
 - Verification summary
 - Known limitations or follow-up notes
+
+Expected handoff artifact: implementation-summary.md plus code diff.
 
 ### Quality Bar
 
@@ -340,6 +352,8 @@ Typical outputs include:
 - Optional improvements
 - Recommendation
 
+Expected handoff artifact: review-report.md.
+
 ### Quality Bar
 
 A review is complete when:
@@ -393,6 +407,7 @@ An agent should stop and flag the issue when:
 - The work is much larger than expected
 - Tests cannot reasonably validate the change
 - The agent would need to guess instead of reason from context
+- The work may expose secrets, credentials, private data, or unsafe tool access
 
 ## Definition of Done for Agent Workflow
 

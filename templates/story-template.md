@@ -37,6 +37,17 @@ Choose one:
 - Blocked
 - Done
 
+## Status Definitions
+
+- **_Draft_**: Initial idea; not ready for agent execution.
+- **_Ready for Refinement_**: Goal is known, but scope and AC may need tightening.
+- **_Ready for Architecture Review_**: Scope and AC are clear enough for technical impact review.
+- **_Ready for Test Strategy_**: Architecture direction is clear enough to define validation.
+- **_Ready for Development_**: AC, affected areas, test strategy, and scope are clear enough to implement.
+- **_In Development_**: Implementation is underway.
+- **_In Review_**: Implementation is complete and awaiting review.
+- **_Blocked_**: Work cannot continue without resolving an external dependency or open question.
+- **_Done_**: AC, verification, review, and human approval are complete.
 ## Summary
 
 Briefly describe what needs to be done.
@@ -48,6 +59,17 @@ Keep this section focused on the goal, not the implementation details.
 Explain why this story exists.
 
 Include relevant background, current pain points, project context, or previous decisions.
+
+## Inputs / References
+
+List source material the agents should use.
+
+- GitHub Issue:
+- Related PR:
+- Context Bundle:
+- Related Docs:
+- Related ADRs:
+- Related Stories:
 
 ## Goal
 
@@ -122,6 +144,12 @@ List specific functional or documentation requirements.
 - [ ] Requirement 1
 - [ ] Requirement 2
 - [ ] Requirement 3
+
+Requirement:
+- The template must include a section for agent responsibilities.
+
+Acceptance Criterion:
+- A reviewer can identify responsibilities for Story Refiner, Architect, Test Strategy, Developer, and Reviewer Agents.
 
 ## Proposed Approach
 

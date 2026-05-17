@@ -200,3 +200,13 @@ A human reviewer is responsible for:
 This project is in its initial setup phase.
 
 The current focus is creating the foundational documentation and workflow contracts needed before implementing the CrewAI orchestration layer.
+
+## What to Review Next
+
+Reviewers should look at:
+
+1. `docs/agent-roles.md` to understand the planned agent responsibilities.
+2. `templates/story-template.md` to understand the story contract agents will work from.
+3. `docs/workflow-overview.md` to understand the intended human/agent workflow.
+4. `docs/roadmap.md` to understand the planned implementation sequence.
+5. `scripts/README.md` to understand future context-bundling support.

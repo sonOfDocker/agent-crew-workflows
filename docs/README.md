@@ -26,7 +26,7 @@ It should help answer:
 
 Defines the initial agent roles, responsibilities, boundaries, inputs, outputs, and quality bars.
 
-### `workflow.md`
+### `docs/workflow-overview.md`
 
 Defines the end-to-end development workflow from rough idea through human approval and commit.
 
@@ -34,6 +34,13 @@ Defines the end-to-end development workflow from rough idea through human approv
 
 Defines the early project milestones and expected direction.
 
+### `architecture/README.md`
+
+Defines the current architecture direction and planned structure for future runtime implementation.
+
+### `decisions/README.md`
+
+Defines how architectural and workflow decisions will be recorded.
 ## Planned Documents
 
 Future documentation may include:

@@ -26,19 +26,15 @@ The architecture documentation should help answer:
 The initial architecture is intentionally simple.
 
 ```text
-Project Documentation
-        ↓
-Context Bundle
-        ↓
-Story Input
-        ↓
-Agent Workflow
-        ↓
-Agent Outputs
-        ↓
-Human Review
-        ↓
-Commit / Pull Request
+Project Documentation ──→ Context Bundle
+                                  ↓
+Story Input ─────────────────→ Agent Workflow
+                                  ↓
+                            Agent Outputs
+                                  ↓
+                            Human Review
+                                  ↓
+                         Commit / Pull Request
 ```
 
 ## Major Components
@@ -80,6 +76,8 @@ The planned phases are:
 4. Development
 5. Review
 6. Human approval
+
+The exact responsibilities for each phase are defined in `docs/agent-roles.md`.
 
 ### Agent Outputs
 
