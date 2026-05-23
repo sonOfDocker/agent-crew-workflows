@@ -359,6 +359,12 @@ The context bundle should help agents understand:
 
 The context bundle should be treated as read-only input unless a story explicitly asks to update it.
 
+You can validate that a context bundle and a story file are ready for the workflow using the input loader:
+
+```bash
+python -m crews.story_readiness.main --context-file ./context-bundle.md --story-file ./stories/current-story.md
+```
+
 ## Story Input Expectations
 
 Each workflow run should include a story file or GitHub issue body.

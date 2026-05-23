@@ -16,12 +16,12 @@ Currently, the agents are documented but not executable. We need a way to pass t
 Enable the Story Readiness Crew to run locally, reading from `context-bundle.md` and `current-story.md` (or similar files), and producing the expected handoff artifacts.
 
 ## Acceptance Criteria
-- [x] `crews/story_readiness/crew.py` is implemented and loads agents/tasks from YAML.
-- [x] `crews/story_readiness/main.py` is implemented as the entry point.
-- [x] The workflow successfully reads a `{project_context}` variable.
-- [x] The workflow successfully reads a `{story_input}` variable.
-- [ ] A sample execution can be run via command line.
-- [x] Handoff artifacts (story-refinement.md, etc.) are produced in an output directory.
+- [x] `crews/story_readiness/inputs.py` implemented with `WorkflowInputs` model and `load_workflow_inputs` function.
+- [x] Robust validation (rejects directories, empty files, unreadable files).
+- [x] `crews/story_readiness/main.py` refactored to use the reusable input loader.
+- [x] CLI provides concise success summary with paths and size counts.
+- [x] Focused test coverage added in `tests/test_inputs.py`.
+- [x] Documentation updated in `crews/story_readiness/README.md`.
 
 ## Affected Areas
 - `crews/story_readiness/crew.py` (new)
