@@ -54,7 +54,7 @@ The MVP workflow is intended to provide advisory planning support. It does not m
 
 ### Generated Artifacts
 
-Each run produces a set of markdown artifacts in the output directory (default: `./outputs/story-workflow`):
+Each run produces a set of markdown artifacts in the output directory (default: `./outputs/story-workflow`). For full details on the required sections and content rules, see the [Workflow Artifacts Documentation](./workflow-artifacts.md).
 
 1.  **story-refinement.md**: Refined requirements and acceptance criteria.
 2.  **architecture-notes.md**: Technical design and implementation approach.

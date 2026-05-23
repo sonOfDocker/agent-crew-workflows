@@ -46,7 +46,7 @@ python scripts/run_story_workflow.py `
 
 ## Generated Artifacts
 
-The workflow generates the following markdown files in the specified output directory:
+The workflow generates the following markdown files in the specified output directory. For full details on the required sections and content rules, see the [Workflow Artifacts Documentation](../../docs/workflow-artifacts.md).
 
 - `story-refinement.md`
 - `architecture-notes.md`

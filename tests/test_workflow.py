@@ -74,7 +74,7 @@ class TestWorkflow:
         # Verify post-processing happened
         with open(fake_artifact, "r", encoding="utf-8") as f:
             content = f.read()
-        assert content.startswith("> AI-generated planning support.")
+        assert content.startswith("> Note: This artifact is AI-generated planning support.")
         assert "Initial Content" in content
 
         # Cleanup
@@ -96,7 +96,7 @@ class TestWorkflow:
         with open(test_file, "r", encoding="utf-8") as f:
             new_content = f.read()
             
-        assert new_content.startswith("> AI-generated planning support.")
+        assert new_content.startswith("> Note: This artifact is AI-generated planning support.")
         assert original_content in new_content
         
         # Verify it doesn't double-prepend
