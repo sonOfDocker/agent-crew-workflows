@@ -131,12 +131,12 @@ Captures the Reviewer Agent’s review of the generated workflow artifacts or co
 - `# Review Notes`
 - `## Review Summary`: Review outcome summary.
 - `## Artifacts Reviewed`: List of artifacts (e.g., `test-plan.md`).
-- `## Acceptance Criteria Status`: Status of each AC (e.g., satisfied, unclear).
+- `## Acceptance Criteria Status`: Status of each AC using one of: `satisfied`, `partially satisfied`, `not satisfied`, `unclear`, or `not yet verifiable`.
 - `## Evidence Reviewed`: List of evidence available (or state if none).
-- `## Issues Found`: Problems, inconsistencies, or unsupported claims.
-- `## Required Changes`: Changes required before approval.
+- `## Issues Found`: List problems, inconsistencies, or unsupported claims.
+- `## Required Changes`: List changes required before approval.
 - `## Suggested Improvements`: Non-blocking improvements.
-- `## Final Recommendation`: Use one of: `approve for next step`, `changes requested`, `blocked`, or `needs human decision`.
+- `## Final Recommendation`: Use ONLY one of: `approve for next step`, `changes requested`, `blocked`, `needs human decision`, or `not yet verifiable`.
 - `## Human Decision Needed`: Decisions the human owner must make.
 
 ---

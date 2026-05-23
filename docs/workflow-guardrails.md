@@ -81,7 +81,9 @@ Human approval is required before:
 - Running destructive commands.
 - Claiming tests passed or marking AC as satisfied.
 - Marking a story complete.
-- Performing any repository-changing action (commit, push, PR).
+- Performing any repository-changing action (commit, push, open PR, merge PR).
+- Closing GitHub issues or updating GitHub Projects.
+- Expanding story scope beyond the approved requirement.
 
 ---
 
