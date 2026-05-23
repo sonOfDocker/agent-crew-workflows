@@ -14,7 +14,7 @@ refine_story_task:
     
     Follow the standard story template format.
   expected_output: >
-    A refined markdown story following the project's standard template, with clear AC and boundaries.
+    A refined markdown story (story-refinement.md) following the project's standard template, with clear AC and boundaries.
   agent: story_refiner
 
 technical_review_task:
@@ -28,9 +28,9 @@ technical_review_task:
     3. Identify architectural risks or tradeoffs.
     4. Determine if an ADR is required.
     
-    Add these as 'Technical Notes' and 'Architecture' sections to the story.
+    Add these as 'Technical Notes' and 'Architecture' sections to the story-refinement.md to produce architecture-notes.md.
   expected_output: >
-    An updated markdown story document including technical implementation notes and architectural assessment.
+    A technical design document (architecture-notes.md) including technical implementation notes and architectural assessment.
   agent: architect
 
 define_test_strategy_task:
@@ -42,9 +42,9 @@ define_test_strategy_task:
     3. Suggest unit and integration test scenarios.
     4. Define any required manual verification steps.
     
-    Add these as a 'Test Strategy' section to the story.
+    Add these as a 'Test Strategy' section to produce test-plan.md.
   expected_output: >
-    A final markdown story document that now includes a comprehensive Test Strategy section.
+    A comprehensive test plan (test-plan.md) that includes a mapping of AC to validation methods and identified edge cases.
   agent: test_strategy_agent
 
 implement_story_task:
@@ -52,21 +52,21 @@ implement_story_task:
     Implement the story based on the refined story, architecture notes, and test strategy.
     
     1. Write the code to satisfy all AC.
-    2. Add or update tests as defined in the test strategy.
+    2. Add or update tests as defined in the test plan.
     3. Ensure the implementation follows the proposed approach.
-    4. Verify that all tests pass.
+    4. Do not claim tests passed unless actual command output or human-provided verification evidence is available.
   expected_output: >
-    A summary of code and test changes, and confirmation that all AC are addressed.
+    An implementation plan (implementation-plan.md) containing a summary of code and test changes, AC mapping, and verification evidence or clearly marked missing evidence.
   agent: developer
 
 review_story_task:
   description: >
     Review the implementation produced by the Developer.
     
-    1. Verify each AC is satisfied.
-    2. Check for adherence to architecture and test strategy.
+    1. Verify each AC is satisfied using provided evidence.
+    2. Check for adherence to architecture and test plan.
     3. Look for any regressions or out-of-scope changes.
     4. Provide a recommendation (Approve/Revise).
   expected_output: >
-    A detailed review report with a clear recommendation.
+    A detailed review report (review-notes.md) with a clear recommendation and AC verification checklist.
   agent: reviewer
