@@ -127,7 +127,7 @@ Captures the Reviewer Agent’s review of the generated workflow artifacts or co
 - `## Issues Found`: Problems, inconsistencies, or unsupported claims.
 - `## Required Changes`: Changes required before approval.
 - `## Suggested Improvements`: Non-blocking improvements.
-- `## Final Recommendation`: e.g., Approve, Changes Requested, Blocked.
+- `## Final Recommendation`: Use one of: `approve for next step`, `changes requested`, `blocked`, or `needs human decision`.
 - `## Human Decision Needed`: Decisions the human owner must make.
 
 ---

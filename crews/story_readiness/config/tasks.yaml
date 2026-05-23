@@ -106,7 +106,7 @@ produce_review_notes_task:
     - ## Issues Found: List problems, inconsistencies, or unsupported claims.
     - ## Required Changes: List changes required before approval.
     - ## Suggested Improvements: List non-blocking improvements.
-    - ## Final Recommendation: (Approve for next step / Changes requested / Blocked / Needs human decision).
+    - ## Final Recommendation: Use one of: `approve for next step`, `changes requested`, `blocked`, or `needs human decision`.
     - ## Human Decision Needed: List decisions the human owner must make.
 
     IMPORTANT: Your output is advisory and requires human review.
