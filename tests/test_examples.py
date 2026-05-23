@@ -1,5 +1,4 @@
 import os
-import pytest
 
 def test_example_files_exist():
     """
@@ -59,3 +58,15 @@ def test_expected_artifact_list_matches_contract():
     
     for artifact in expected_artifacts:
         assert artifact in content, f"Artifact {artifact} not documented in expected-output README"
+
+def test_demo_readme_command():
+    """
+    Verify that examples/story_workflow/README.md contains the exact documented command and output path.
+    """
+    readme_path = os.path.join("examples", "story_workflow", "README.md")
+    with open(readme_path, "r", encoding="utf-8") as f:
+        content = f.read()
+    
+    expected_command = "python scripts/run_story_workflow.py --context-file examples/story_workflow/context-bundle.example.md --story-file examples/story_workflow/story.example.md --output-dir outputs/story-workflow/example"
+    assert expected_command in content, "Demo command in README.md is incorrect or missing"
+    assert "outputs/story-workflow/example" in content, "Output path in README.md is incorrect or missing"

@@ -12,11 +12,13 @@ The goal of this demo is to provide a concrete, reproducible example of how the 
 
 ## Prerequisites
 
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-   *(Note: Ensure you have your LLM API keys configured as per the project's root README.)*
+Install the project with development dependencies from the repository root:
+
+```bash
+python -m pip install -e ".[dev]"
+```
+
+Configure the required LLM API key in your environment or `.env` file.
 
 ## Running the Demo
 
