@@ -1,0 +1,72 @@
+# Tasks for Story Readiness Workflow
+
+refine_story_task:
+  description: >
+    Review the input story: {story_input}
+    
+    Using the project context: {project_context}
+    
+    Your goal is to refine this story into a professional, implementation-ready document.
+    1. Clarify the core goal and value.
+    2. Define specific, testable acceptance criteria (AC).
+    3. Identify what is in-scope vs out-of-scope.
+    4. List any open questions or assumptions.
+    
+    Follow the standard story template format.
+  expected_output: >
+    A refined markdown story following the project's standard template, with clear AC and boundaries.
+  agent: story_refiner
+
+technical_review_task:
+  description: >
+    Review the refined story produced by the Story Refiner.
+    
+    Using the project context: {project_context}
+    
+    1. Identify affected files, modules, or components.
+    2. Propose a technical implementation approach.
+    3. Identify architectural risks or tradeoffs.
+    4. Determine if an ADR is required.
+    
+    Add these as 'Technical Notes' and 'Architecture' sections to the story.
+  expected_output: >
+    An updated markdown story document including technical implementation notes and architectural assessment.
+  agent: architect
+
+define_test_strategy_task:
+  description: >
+    Review the refined story and technical notes.
+    
+    1. Map every acceptance criterion to a specific validation method.
+    2. Identify critical edge cases.
+    3. Suggest unit and integration test scenarios.
+    4. Define any required manual verification steps.
+    
+    Add these as a 'Test Strategy' section to the story.
+  expected_output: >
+    A final markdown story document that now includes a comprehensive Test Strategy section.
+  agent: test_strategy_agent
+
+implement_story_task:
+  description: >
+    Implement the story based on the refined story, architecture notes, and test strategy.
+    
+    1. Write the code to satisfy all AC.
+    2. Add or update tests as defined in the test strategy.
+    3. Ensure the implementation follows the proposed approach.
+    4. Verify that all tests pass.
+  expected_output: >
+    A summary of code and test changes, and confirmation that all AC are addressed.
+  agent: developer
+
+review_story_task:
+  description: >
+    Review the implementation produced by the Developer.
+    
+    1. Verify each AC is satisfied.
+    2. Check for adherence to architecture and test strategy.
+    3. Look for any regressions or out-of-scope changes.
+    4. Provide a recommendation (Approve/Revise).
+  expected_output: >
+    A detailed review report with a clear recommendation.
+  agent: reviewer
