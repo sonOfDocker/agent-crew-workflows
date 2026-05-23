@@ -103,10 +103,41 @@ class StoryReadinessCrew():
         )
 
     def kickoff(self, inputs: WorkflowInputs):
-        """Kickoff the crew with inputs."""
+        """Kickoff the crew with inputs and post-process artifacts."""
         crew_inputs = {
             "story_input": inputs.story_content,
             "project_context": inputs.context_content,
-            "current_date": datetime.now().strftime("%Y-%m-%d")
+            "current_date": datetime.now().strftime("%Y-%m-%d"),
+            "story_path": inputs.story_path,
+            "context_path": inputs.context_path,
+            "output_dir": os.path.abspath(self.output_dir)
         }
-        return self.crew().kickoff(inputs=crew_inputs)
+        result = self.crew().kickoff(inputs=crew_inputs)
+        self._post_process_artifacts()
+        return result
+
+    def _post_process_artifacts(self):
+        """Prepend advisory warning to all generated markdown artifacts."""
+        advisory_note = (
+            "> AI-generated planning support. Human review is required before "
+            "implementation, verification, or completion decisions.\n\n"
+        )
+        
+        expected_files = [
+            'story-refinement.md',
+            'architecture-notes.md',
+            'test-plan.md',
+            'implementation-plan.md',
+            'review-notes.md',
+            'final-summary.md'
+        ]
+        
+        for filename in expected_files:
+            file_path = os.path.join(self.output_dir, filename)
+            if os.path.exists(file_path):
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                
+                if not content.startswith(advisory_note.strip()):
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(advisory_note + content)

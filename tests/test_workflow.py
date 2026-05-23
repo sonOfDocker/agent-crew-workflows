@@ -35,11 +35,19 @@ class TestWorkflow:
 
     @patch('crews.story_readiness.crew.Crew')
     def test_crew_kickoff(self, mock_crew):
-        """Test that kickoff calls the underlying Crew.kickoff with correct inputs."""
+        """Test that kickoff calls the underlying Crew.kickoff with correct inputs and processes artifacts."""
         mock_instance = MagicMock()
         mock_crew.return_value = mock_instance
         
-        crew_runner = StoryReadinessCrew()
+        output_dir = "test_kickoff_outputs"
+        crew_runner = StoryReadinessCrew(output_dir=output_dir)
+        
+        # Create fake artifact to test post-processing
+        os.makedirs(output_dir, exist_ok=True)
+        fake_artifact = os.path.join(output_dir, "story-refinement.md")
+        with open(fake_artifact, "w", encoding="utf-8") as f:
+            f.write("Initial Content")
+
         inputs = WorkflowInputs(
             story_path="story.md",
             story_content="Story Content",
@@ -58,7 +66,48 @@ class TestWorkflow:
         assert "inputs" in call_args
         assert call_args["inputs"]["story_input"] == "Story Content"
         assert call_args["inputs"]["project_context"] == "Context Content"
+        assert "story_path" in call_args["inputs"]
+        assert "context_path" in call_args["inputs"]
+        assert "output_dir" in call_args["inputs"]
         assert "current_date" in call_args["inputs"]
+
+        # Verify post-processing happened
+        with open(fake_artifact, "r", encoding="utf-8") as f:
+            content = f.read()
+        assert content.startswith("> AI-generated planning support.")
+        assert "Initial Content" in content
+
+        # Cleanup
+        os.remove(fake_artifact)
+        os.rmdir(output_dir)
+
+    def test_post_process_artifacts_directly(self):
+        """Test the post-processing logic directly."""
+        output_dir = "test_direct_processing"
+        crew = StoryReadinessCrew(output_dir=output_dir)
+        
+        test_file = os.path.join(output_dir, "architecture-notes.md")
+        original_content = "Architecture content here."
+        with open(test_file, "w", encoding="utf-8") as f:
+            f.write(original_content)
+            
+        crew._post_process_artifacts()
+        
+        with open(test_file, "r", encoding="utf-8") as f:
+            new_content = f.read()
+            
+        assert new_content.startswith("> AI-generated planning support.")
+        assert original_content in new_content
+        
+        # Verify it doesn't double-prepend
+        crew._post_process_artifacts()
+        with open(test_file, "r", encoding="utf-8") as f:
+            newer_content = f.read()
+        assert newer_content == new_content
+
+        # Cleanup
+        os.remove(test_file)
+        os.rmdir(output_dir)
 
     def test_invalid_inputs_fail(self):
         """Test that the runner fails with non-existent files."""

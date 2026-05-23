@@ -87,7 +87,8 @@ produce_final_summary_task:
   description: >
     Summarize all generated outputs and list next human actions.
     Make it clear that the workflow output is advisory and requires human review.
-    Include a summary of the context file used and the story file used.
+    Include a summary of the context file used ({context_path}) and the story file used ({story_path}).
+    Also mention the output directory: {output_dir}
   expected_output: >
     A final summary document listing next steps and advisory notice.
   agent: reviewer

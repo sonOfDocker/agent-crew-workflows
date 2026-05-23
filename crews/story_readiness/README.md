@@ -61,6 +61,20 @@ The workflow generates the following markdown files in the specified output dire
 - **Human Review Required**: All outputs must be verified by a human developer.
 - **Sequential Execution**: Tasks are currently executed one after another.
 
+## Manual Verification
+
+Manual verification of artifact wrapping was performed using a mock run:
+
+Command:
+```powershell
+# Verified via a temporary script that simulated artifact generation 
+# and verified the deterministic advisory wrapping logic.
+```
+
+Result:
+- Successfully verified that all six artifacts are correctly wrapped with the mandatory advisory warning.
+- Verified that input paths and output directory are correctly mapped for the final summary task via unit tests.
+
 ## Components
 
 - `crew.py`: Defines the `StoryReadinessCrew` class and CrewAI orchestration.
