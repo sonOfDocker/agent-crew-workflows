@@ -39,15 +39,31 @@ def test_load_workflow_inputs_directory_input(tmp_path):
     dir_path.mkdir()
     context = tmp_path / "context.md"
     context.write_text("context")
+    story = tmp_path / "story.md"
+    story.write_text("story")
+    
+    # Story path is a directory
     with pytest.raises(ValueError, match="Story path is a directory"):
         load_workflow_inputs(str(dir_path), str(context))
+        
+    # Context path is a directory
+    with pytest.raises(ValueError, match="Context path is a directory"):
+        load_workflow_inputs(str(story), str(dir_path))
 
 def test_load_workflow_inputs_empty_file(tmp_path):
     story = tmp_path / "story.md"
     story.write_text("   ")
     context = tmp_path / "context.md"
     context.write_text("context")
+    
+    # Story file is empty
     with pytest.raises(ValueError, match="Story file is empty"):
+        load_workflow_inputs(str(story), str(context))
+        
+    # Context file is empty
+    story.write_text("story")
+    context.write_text("")
+    with pytest.raises(ValueError, match="Context file is empty"):
         load_workflow_inputs(str(story), str(context))
 
 def test_load_workflow_inputs_markdown_preservation(tmp_path):

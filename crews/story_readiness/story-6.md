@@ -24,7 +24,8 @@ Enable the Story Readiness Crew to run locally, reading from `context-bundle.md`
 - [x] Documentation updated in `crews/story_readiness/README.md`.
 
 ## Affected Areas
-- `crews/story_readiness/crew.py` (new)
-- `crews/story_readiness/main.py` (new)
+- `crews/story_readiness/inputs.py` (new)
+- `crews/story_readiness/main.py` (updated)
 - `crews/story_readiness/story-6.md` (updated)
 - `docs/roadmap.md` (updated)
+- `tests/test_inputs.py` (new)
