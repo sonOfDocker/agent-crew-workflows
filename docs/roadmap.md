@@ -111,36 +111,35 @@ This milestone should standardize how a story file or GitHub issue body becomes 
 - Agents can determine whether a story is ready for the next phase.
 - Missing context or unclear acceptance criteria can be flagged.
 
-## Milestone 4: CrewAI MVP
+## Milestone 4: Implement Context and Story Input Loading
 
 Goal: Implement the first minimal CrewAI workflow.
 
-This milestone should translate the documented workflow into a basic CrewAI implementation.
+This milestone translates the documented workflow into a basic CrewAI implementation.
 
 ### Scope
 
 - Add initial CrewAI project structure.
-- Define initial agents.
-- Define initial tasks.
+- Define initial agents in `crews/story_readiness/config/agents.yaml`.
+- Define initial tasks in `crews/story_readiness/config/tasks.yaml`.
 - Load project context from a markdown bundle.
 - Load story input from a markdown file.
 - Run a simple story refinement workflow.
-- Keep the first implementation intentionally small.
+- Produce handoff artifacts as markdown files.
 
 ### Expected Files
 
-- crews/development/
-- crews/development/agents.yaml
-- crews/development/tasks.yaml
-- crews/development/crew.py
-- crews/development/main.py
+- crews/story_readiness/crew.py
+- crews/story_readiness/main.py
+- crews/story_readiness/config/agents.yaml
+- crews/story_readiness/config/tasks.yaml
 - docs/crewai-mvp.md
 
 ### Done When
 
-- A local CrewAI command can run against a story file.
-- The workflow can read a context bundle.
-- The workflow can produce a story refinement output.
+- A local CrewAI command can run against a story file. (✓)
+- The workflow can read a context bundle. (✓)
+- The workflow can produce a story refinement output. (✓)
 - Setup steps are documented.
 - Known limitations are documented.
 

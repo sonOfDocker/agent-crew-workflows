@@ -6,6 +6,8 @@ refine_story_task:
     
     Using the project context: {project_context}
     
+    Current date: {current_date}
+    
     Your goal is to refine this story into a professional, implementation-ready document.
     1. Clarify the core goal and value.
     2. Define specific, testable acceptance criteria (AC).
@@ -16,6 +18,7 @@ refine_story_task:
   expected_output: >
     A refined markdown story (story-refinement.md) following the project's standard template, with clear AC and boundaries.
   agent: story_refiner
+  output_file: story-refinement.md
 
 technical_review_task:
   description: >
@@ -32,6 +35,7 @@ technical_review_task:
   expected_output: >
     A technical design document (architecture-notes.md) including technical implementation notes and architectural assessment.
   agent: architect
+  output_file: architecture-notes.md
 
 define_test_strategy_task:
   description: >
@@ -46,6 +50,7 @@ define_test_strategy_task:
   expected_output: >
     A comprehensive test plan (test-plan.md) that includes a mapping of AC to validation methods and identified edge cases.
   agent: test_strategy_agent
+  output_file: test-plan.md
 
 implement_story_task:
   description: >
@@ -58,6 +63,7 @@ implement_story_task:
   expected_output: >
     An implementation plan (implementation-plan.md) containing a summary of code and test changes, AC mapping, and verification evidence or clearly marked missing evidence.
   agent: developer
+  output_file: implementation-plan.md
 
 review_story_task:
   description: >
@@ -70,3 +76,4 @@ review_story_task:
   expected_output: >
     A detailed review report (review-notes.md) with a clear recommendation and AC verification checklist.
   agent: reviewer
+  output_file: review-notes.md
