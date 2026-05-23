@@ -34,6 +34,37 @@ Reviewer Agent
         ↓
 Human Approval / Commit
 ```
+## Runnable MVP Workflow
+
+The project includes a runnable MVP workflow that implements the Story Readiness sequence using CrewAI.
+
+### Execution
+
+You can run the MVP workflow from the command line using:
+
+```powershell
+python scripts/run_story_workflow.py `
+  --context-file <context_file_path> `
+  --story-file <story_file_path>
+```
+
+### Purpose
+
+The MVP workflow is intended to provide advisory planning support. It does not modify source code or perform repository-changing actions.
+
+### Generated Artifacts
+
+Each run produces a set of markdown artifacts in the output directory (default: `./outputs/story-workflow`):
+
+1.  **story-refinement.md**: Refined requirements and acceptance criteria.
+2.  **architecture-notes.md**: Technical design and implementation approach.
+3.  **test-plan.md**: Validation strategy and test scenarios.
+4.  **implementation-plan.md**: Planned code and test changes.
+5.  **review-notes.md**: Planning review and recommendation.
+6.  **final-summary.md**: Summary of next steps.
+
+For more details, see the [Story Readiness Crew README](../crews/story_readiness/README.md).
+
 ## Phase Usage
 
 By default, stories should pass through each phase. For very small documentation-only or configuration-only changes, a phase may be lightweight, but it should not be silently skipped. If a phase is not applicable, the handoff should state why.

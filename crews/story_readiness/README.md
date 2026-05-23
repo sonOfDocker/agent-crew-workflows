@@ -1,79 +1,70 @@
 # Story Readiness Crew
 
-This directory contains the Story Readiness workflow implementation.
+This directory contains the Story Readiness workflow implementation using CrewAI.
 
 ## Purpose
 
-The Story Readiness crew evaluates whether a development story contains enough information for agents to execute it safely and consistently.
+The Story Readiness crew is the first runnable MVP workflow. It takes a project context bundle and a story markdown file as inputs, executes a sequence of specialist agents, and produces structured markdown artifacts to help a human developer prepare a story for implementation.
 
-## Current Implementation: Input Loading
+**Note: The output of this workflow is advisory and requires human review.**
 
-The current implementation focuses on reusable input loading and validation, ensuring that both the project context bundle and the story input are valid markdown files before any orchestration begins.
+## Workflow Sequence
 
-### Usage
+The workflow follows a sequential process:
 
-You can validate workflow inputs using the following command:
+1.  **Story Refiner**: Reviews the story and project context to clarify intent and improve acceptance criteria.
+2.  **Architect**: Proposes a technical approach and identifies affected components.
+3.  **Test Strategist**: Defines a validation strategy and test scenarios.
+4.  **Developer**: Produces a detailed implementation plan (without modifying code).
+5.  **Reviewer**: Evaluates all planning artifacts and provides a recommendation.
+6.  **Final Summary**: Summarizes all outputs and lists next human actions.
 
-```bash
-python -m crews.story_readiness.main --context-file <context_bundle_path> --story-file <story_file_path>
+## Usage
+
+### Prerequisites
+
+- Python 3.12+
+- `crewai` and `python-dotenv` installed
+- An `OPENAI_API_KEY` (or other supported LLM provider key) set in your environment or `.env` file.
+
+### Running the Workflow
+
+You can run the workflow from the project root using the provided script:
+
+```powershell
+python scripts/run_story_workflow.py `
+  --context-file ./examples/world-cup-stats/context-bundle.md `
+  --story-file ./examples/world-cup-stats/current-story.md `
+  --output-dir ./outputs/story-workflow/world-cup
 ```
 
-### Components
+### Arguments
 
-- `inputs.py`: Contains the `WorkflowInputs` model and the `load_workflow_inputs` function.
-- `main.py`: A thin CLI wrapper for input validation.
-- `config/`: Directory for agent and task YAML configurations.
+- `--context-file`: (Required) Path to the project context bundle markdown file.
+- `--story-file`: (Required) Path to the story markdown file.
+- `--output-dir`: (Optional) Directory where generated artifacts will be saved. Defaults to `./outputs/story-workflow`.
 
-## Workflow Goal
+## Generated Artifacts
 
-This workflow is intended to help determine whether a story is ready for downstream agent roles such as:
+The workflow generates the following markdown files in the specified output directory:
 
-- Architect Agent
-- Test Agent
-- Developer Agent
-- Reviewer Agent
+- `story-refinement.md`
+- `architecture-notes.md`
+- `test-plan.md`
+- `implementation-plan.md`
+- `review-notes.md`
+- `final-summary.md`
 
-## Expected Responsibilities
+## Current Limitations
 
-The future Story Readiness crew may validate that a story includes:
+- **Advisory Only**: Agents do not modify source code, create commits, or open pull requests.
+- **Human Review Required**: All outputs must be verified by a human developer.
+- **Sequential Execution**: Tasks are currently executed one after another.
 
-- A clear goal
-- Explicit acceptance criteria
-- Relevant project context
-- Expected files or areas of the repository to inspect
-- Testing expectations
-- Definition of Done requirements
-- Constraints, assumptions, and non-goals
-- Expected output artifacts
+## Components
 
-## Expected Inputs
-
-Potential inputs may include:
-
-- A story file or GitHub issue
-- `templates/story-template.md`
-- A generated context bundle
-- Relevant documentation from `docs/`
-- Existing project conventions and workflow contracts
-
-## Expected Outputs
-
-Potential outputs may include:
-
-- A story readiness assessment
-- Missing information or ambiguity findings
-- Recommended story refinements
-- A ready/not-ready decision
-- Suggested next agent role or workflow step
-
-## Planned Structure
-
-A future implementation may use a structure similar to:
-
-```text
-crews/story_readiness/
-├── agents.yaml
-├── tasks.yaml
-├── crew.py
-├── main.py
-└── README.md
+- `crew.py`: Defines the `StoryReadinessCrew` class and CrewAI orchestration.
+- `inputs.py`: Handles input loading and validation logic.
+- `main.py`: CLI entry point for the workflow.
+- `config/agents.yaml`: YAML configuration for agent roles, goals, and backstories.
+- `config/tasks.yaml`: YAML configuration for task descriptions and expected outputs.
