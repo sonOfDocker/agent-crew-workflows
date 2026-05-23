@@ -38,6 +38,45 @@ Human Approval / Commit
 
 The project includes a runnable MVP workflow that implements the Story Readiness sequence using CrewAI.
 
+## Human Checkpoints
+
+The MVP workflow is advisory. Human approval is required at several key checkpoints to ensure safety and alignment.
+
+### Checkpoint 1: Story Readiness Check
+**Occurs after:** `story-refinement.md` is generated.
+**Human Decision:** Is the story clear? Are AC testable? Are open questions blocking?
+**Outcomes:** Continue, Revise Story, Split Story, or Block.
+
+### Checkpoint 2: Architecture Review Check
+**Occurs after:** `architecture-notes.md` is generated.
+**Human Decision:** Is the approach acceptable? Are tradeoffs understood? Is an ADR needed?
+**Outcomes:** Continue, Revise Approach, Split Story, or Defer.
+
+### Checkpoint 3: Test Strategy Check
+**Occurs after:** `test-plan.md` is generated.
+**Human Decision:** Are tests appropriate? Is verification evidence clear?
+**Outcomes:** Continue, Revise Test Plan, or Clarify AC.
+
+### Checkpoint 4: Implementation Plan Check
+**Occurs after:** `implementation-plan.md` is generated.
+**Human Decision:** Is the plan safe and scoped? Are file changes reasonable?
+**Outcomes:** Approve for Implementation, Revise Plan, or Split Story.
+
+### Checkpoint 5: Final Review Check
+**Occurs after:** `review-notes.md` and `final-summary.md` are generated.
+**Human Decision:** Is the story ready for implementation? What is the next action?
+**Outcomes:** Proceed to Implementation, Revise Artifacts, or Stop Workflow.
+
+## Workflow Guardrails
+
+The workflow is governed by strict guardrails to prevent unsupported claims and ensure safety. Key categories include:
+- **Evidence:** No claims of success without proof.
+- **Assumptions:** All inferred details must be labeled.
+- **Scope:** Identify and flag scope creep.
+- **Repository Safety:** No modifications outside the output directory.
+
+For full details, see the [Workflow Guardrails](./workflow-guardrails.md) documentation.
+
 ### Execution
 
 You can run the MVP workflow from the command line using:

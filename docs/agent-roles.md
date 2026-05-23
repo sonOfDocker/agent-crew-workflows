@@ -10,7 +10,9 @@ These roles may eventually be implemented through CrewAI, but they should first 
 
 Agents should not all behave like general-purpose developers.
 
-Each agent should have a clear responsibility, a clear handoff, and clear limits.
+Each agent should have a clear responsibility, a clear handoff, and clear limits. 
+
+The workflow follows strict [Workflow Guardrails](./workflow-guardrails.md) to ensure safety and human control.
 
 The workflow should avoid blurred ownership between planning, architecture, testing, implementation, and review.
 
@@ -20,18 +22,30 @@ For the initial MVP, these roles define the expected workflow contract only. The
 
 ## Initial Agent Workflow
 
+The workflow follows strict [Workflow Guardrails](./workflow-guardrails.md) and includes explicit human checkpoints.
+
 ```text
 Idea / Rough Requirement
         ↓
 Story Refiner Agent
         ↓
+[Checkpoint 1: Story Readiness Check]
+        ↓
 Architect Agent
+        ↓
+[Checkpoint 2: Architecture Review Check]
         ↓
 Test Strategy Agent
         ↓
+[Checkpoint 3: Test Strategy Check]
+        ↓
 Developer Agent
         ↓
+[Checkpoint 4: Implementation Plan Check]
+        ↓
 Reviewer Agent
+        ↓
+[Checkpoint 5: Final Review Check]
         ↓
 Human Approval / Commit
 ```

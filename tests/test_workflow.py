@@ -145,3 +145,46 @@ class TestWorkflow:
         from crews.story_readiness.inputs import load_workflow_inputs
         with pytest.raises(FileNotFoundError):
             load_workflow_inputs("non_existent_story.md", "non_existent_context.md")
+
+    def test_task_definitions_include_guardrail_keywords(self):
+        """Verify that task definitions in tasks.yaml include key guardrail language."""
+        import yaml
+        tasks_config_path = os.path.join("crews", "story_readiness", "config", "tasks.yaml")
+        with open(tasks_config_path, "r", encoding="utf-8") as f:
+            tasks = yaml.safe_load(f)
+            
+        for task_name, task_data in tasks.items():
+            desc = task_data.get("description", "").lower()
+            # All tasks should mention they are advisory
+            assert "advisory" in desc
+            assert "human review" in desc
+            
+            # Specific guardrail checks
+            if task_name == "refine_story_task":
+                assert "assumptions" in desc
+                assert "open questions" in desc
+            elif task_name == "produce_test_plan_task":
+                assert "not claim tests have passed" in desc
+            elif task_name == "produce_review_notes_task":
+                assert "evidence reviewed" in desc
+                assert "cautious statuses" in desc
+            elif task_name == "produce_final_summary_task":
+                assert "required human actions" in desc
+
+    def test_agent_definitions_include_guardrail_keywords(self):
+        """Verify that agent definitions in agents.yaml include key guardrail language."""
+        import yaml
+        agents_config_path = os.path.join("crews", "story_readiness", "config", "agents.yaml")
+        with open(agents_config_path, "r", encoding="utf-8") as f:
+            agents = yaml.safe_load(f)
+            
+        for agent_name, agent_data in agents.items():
+            if agent_name == "human_owner":
+                continue
+            backstory = agent_data.get("backstory", "").lower()
+            assert "guardrails" in backstory
+            assert "advisory" in backstory
+            
+            if agent_name == "reviewer":
+                assert "cautious" in backstory
+                assert "not yet verifiable" in backstory
