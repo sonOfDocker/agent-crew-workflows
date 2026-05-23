@@ -236,3 +236,6 @@ Thumbs.db
 
 # Generated context bundles
 context-bundle.md
+
+# Workflow outputs
+outputs/

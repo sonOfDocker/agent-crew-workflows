@@ -15,11 +15,13 @@ refine_story_task:
     4. List any open questions or assumptions.
     
     Follow the standard story template format.
+    IMPORTANT: Your output is advisory and requires human review.
   expected_output: >
-    A refined markdown story (story-refinement.md) following the project's standard template, with clear AC and boundaries.
+    A refined markdown story following the project's standard template, with clear AC and boundaries.
   agent: story_refiner
+  output_file: story-refinement.md
 
-technical_review_task:
+produce_architecture_notes_task:
   description: >
     Review the refined story produced by the Story Refiner.
     
@@ -30,45 +32,64 @@ technical_review_task:
     3. Identify architectural risks or tradeoffs.
     4. Determine if an ADR is required.
     
-    Add these as 'Technical Notes' and 'Architecture' sections to the story-refinement.md to produce architecture-notes.md.
+    Add these as 'Technical Notes' and 'Architecture' sections.
+    IMPORTANT: Your output is advisory and requires human review.
   expected_output: >
-    A technical design document (architecture-notes.md) including technical implementation notes and architectural assessment.
+    A technical design document including technical implementation notes and architectural assessment.
   agent: architect
+  output_file: architecture-notes.md
 
-define_test_strategy_task:
+produce_test_plan_task:
   description: >
-    Review the refined story and technical notes.
+    Review the refined story and architecture notes.
     
     1. Map every acceptance criterion to a specific validation method.
     2. Identify critical edge cases.
     3. Suggest unit and integration test scenarios.
     4. Define any required manual verification steps.
     
-    Add these as a 'Test Strategy' section to produce test-plan.md.
+    IMPORTANT: Your output is advisory and requires human review.
   expected_output: >
-    A comprehensive test plan (test-plan.md) that includes a mapping of AC to validation methods and identified edge cases.
-  agent: test_strategy_agent
+    A comprehensive test plan that includes a mapping of AC to validation methods and identified edge cases.
+  agent: test_strategist
+  output_file: test-plan.md
 
-implement_story_task:
+produce_implementation_plan_task:
   description: >
-    Implement the story based on the refined story, architecture notes, and test strategy.
+    Produce an implementation plan based on the refined story, architecture notes, and test strategy.
     
-    1. Write the code to satisfy all AC.
-    2. Add or update tests as defined in the test plan.
-    3. Ensure the implementation follows the proposed approach.
-    4. Do not claim tests passed unless actual command output or human-provided verification evidence is available.
+    1. List the specific code and test changes needed to satisfy all AC.
+    2. Ensure the plan follows the proposed architecture approach.
+    3. Do NOT modify any source files. Only describe the plan.
+    
+    IMPORTANT: Your output is advisory and requires human review.
   expected_output: >
-    An implementation plan (implementation-plan.md) containing a summary of code and test changes, AC mapping, and verification evidence or clearly marked missing evidence.
+    An implementation plan containing a summary of planned code and test changes and AC mapping.
   agent: developer
+  output_file: implementation-plan.md
 
-review_story_task:
+produce_review_notes_task:
   description: >
-    Review the implementation produced by the Developer.
+    Review all planning artifacts produced by the previous agents (refinement, architecture, test plan, implementation plan).
     
-    1. Verify each AC is satisfied using provided evidence.
-    2. Check for adherence to architecture and test plan.
-    3. Look for any regressions or out-of-scope changes.
+    1. Verify each AC is addressed in the plan.
+    2. Check for adherence to architecture and project standards.
+    3. Look for any regressions or out-of-scope changes in the implementation plan.
     4. Provide a recommendation (Approve/Revise).
+    
+    IMPORTANT: Your output is advisory and requires human review.
   expected_output: >
-    A detailed review report (review-notes.md) with a clear recommendation and AC verification checklist.
+    A detailed review report with a clear recommendation and AC verification checklist.
   agent: reviewer
+  output_file: review-notes.md
+
+produce_final_summary_task:
+  description: >
+    Summarize all generated outputs and list next human actions.
+    Make it clear that the workflow output is advisory and requires human review.
+    Include a summary of the context file used ({context_path}) and the story file used ({story_path}).
+    Also mention the output directory: {output_dir}
+  expected_output: >
+    A final summary document listing next steps and advisory notice.
+  agent: reviewer
+  output_file: final-summary.md
