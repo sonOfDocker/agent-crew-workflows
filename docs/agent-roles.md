@@ -44,6 +44,12 @@ The Story Refiner Agent turns a rough idea, vague requirement, GitHub issue, or 
 
 This agent is responsible for making the work clear before design or development begins.
 
+### Task Boundaries
+
+- **Entry Gate**: Receipt of a draft story, rough requirement, or GitHub issue.
+- **Exit Gate**: A refined story (story-refinement.md) that follows the standard template and has all mandatory sections filled (Summary, Goals, AC, etc.).
+- **Constraint**: Must not proceed if the goal is fundamentally ambiguous; should flag for human clarification instead.
+
 ### Owns
 
 The Story Refiner Agent owns:
@@ -90,7 +96,7 @@ Typical outputs include:
 - Open questions
 - Definition of done
 
-Expected handoff artifact: refined-story.md or GitHub issue body.
+Expected handoff artifact: story-refinement.md or GitHub issue body.
 
 ### Quality Bar
 
@@ -110,6 +116,12 @@ A story is ready to hand off when:
 The Architect Agent reviews the refined story and proposes the technical approach.
 
 This agent is responsible for helping choose the right design before implementation begins.
+
+### Task Boundaries
+
+- **Entry Gate**: A refined story with clear acceptance criteria.
+- **Exit Gate**: Architecture notes (architecture-notes.md) that define affected components and implementation approach.
+- **Constraint**: Must not change story scope; must flag if the refined story is technically unfeasible.
 
 ### Owns
 
@@ -175,6 +187,12 @@ The Test Strategy Agent defines what should be tested before implementation begi
 
 This agent is responsible for test intent, coverage expectations, edge cases, and validation strategy.
 
+### Task Boundaries
+
+- **Entry Gate**: A refined story and architecture notes.
+- **Exit Gate**: A test plan (test-plan.md) that maps AC to validation steps and identifies edge cases.
+- **Constraint**: Must ensure every AC has at least one validation path.
+
 ### Owns
 
 The Test Strategy Agent owns:
@@ -218,7 +236,7 @@ Typical outputs include:
 - Edge cases
 - Manual verification steps if needed
 
-Expected handoff artifact: test-strategy.md.
+Expected handoff artifact: test-plan.md.
 
 ### Quality Bar
 
@@ -237,6 +255,12 @@ The test strategy is ready when:
 The Developer Agent implements the story according to the refined requirements, architecture notes, and test strategy.
 
 This agent is responsible for producing the code and test changes needed to satisfy the story.
+
+### Task Boundaries
+
+- **Entry Gate**: Implementation-ready story (Refined AC + Architecture + Test Strategy).
+- **Exit Gate**: Code changes, tests, and an implementation plan (implementation-plan.md).
+- **Constraint**: Must stay within the defined architecture and scope; must not claim tests passed without actual command output or human-provided evidence.
 
 ### Owns
 
@@ -284,7 +308,7 @@ Typical outputs include:
 - Verification summary
 - Known limitations or follow-up notes
 
-Expected handoff artifact: implementation-summary.md plus code diff.
+Expected handoff artifact: implementation-plan.md plus code diff.
 
 ### Quality Bar
 
@@ -304,6 +328,12 @@ The implementation is ready for review when:
 The Reviewer Agent evaluates the completed work against the story, architecture notes, test strategy, and project standards.
 
 This agent is responsible for quality review before human approval.
+
+### Task Boundaries
+
+- **Entry Gate**: Completed implementation (Code + Tests + Implementation Summary).
+- **Exit Gate**: A review report (review-notes.md) with a recommendation for approval, revision, or rejection.
+- **Constraint**: Must explicitly verify every AC; must check for regressions and style compliance.
 
 ### Owns
 
@@ -352,7 +382,7 @@ Typical outputs include:
 - Optional improvements
 - Recommendation
 
-Expected handoff artifact: review-report.md.
+Expected handoff artifact: review-notes.md.
 
 ### Quality Bar
 

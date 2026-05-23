@@ -62,7 +62,7 @@ Possible inputs include:
 ### Outputs
 
 The output of this phase is a rough work item that can be refined into a clear story.
-- Refined story body or story markdown file
+- Rough story body or draft story markdown file
 
 ### Quality Bar
 
@@ -105,7 +105,8 @@ The Story Refiner Agent should produce:
 - Open questions
 - Assumptions
 - Definition of done
-- Architecture notes
+
+Expected handoff artifact: **story-refinement.md**
 
 ### Quality Bar
 
@@ -149,7 +150,8 @@ The Architect Agent should produce:
 - Data flow or integration notes
 - ADR recommendation if needed
 - Handoff notes for the Test Strategy Agent and Developer Agent
-- Test strategy notes
+
+Expected handoff artifact: **architecture-notes.md**
 
 
 ### Quality Bar
@@ -192,7 +194,8 @@ The Test Strategy Agent should produce:
 - Edge cases
 - Regression risks
 - Manual verification steps if appropriate
-- Implementation summary
+
+Expected handoff artifact: **test-plan.md**
 
 ### Quality Bar
 
@@ -235,7 +238,8 @@ The Developer Agent should produce:
 - Implementation notes
 - Verification notes
 - Known limitations or follow-up recommendations
-- Review report
+
+Expected handoff artifact: **implementation-plan.md**
 
 
 ### Quality Bar
@@ -286,6 +290,8 @@ The Reviewer Agent should produce:
 - Recommendation
 - Final commit message
 
+Expected handoff artifact: **review-notes.md**
+
 ### Quality Bar
 
 The story is ready for human approval when:
@@ -311,8 +317,8 @@ The human owner should review:
 - Refined story
 - Architecture notes
 - Test strategy
-- Implementation summary
-- Review summary
+- Implementation plan
+- Review notes
 - Code diff
 - Test results
 - Commit message
