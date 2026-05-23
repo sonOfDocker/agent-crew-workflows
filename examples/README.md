@@ -17,6 +17,16 @@ Examples may include:
 - Sample review outputs
 - Sample commit messages
 
+## Demos
+
+### [Story Workflow Golden Path Demo](./story_workflow/README.md)
+A complete, self-contained example of the MVP story readiness workflow. It includes:
+- **Example Context**: `examples/story_workflow/context-bundle.example.md`
+- **Example Story**: `examples/story_workflow/story.example.md`
+- **Instructions**: Steps to run the workflow and what to expect.
+
+---
+
 ## Planned Structure
 
 ```text

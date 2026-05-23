@@ -69,6 +69,24 @@ The workflow should help turn vague ideas into implementation-ready stories with
 - Context references
 - Review checklist
 
+## Usage
+
+To run the MVP Story Readiness workflow, use the following command from the repository root:
+
+```bash
+python scripts/run_story_workflow.py --context-file examples/story_workflow/context-bundle.example.md --story-file examples/story_workflow/story.example.md --output-dir outputs/story-workflow/example
+```
+
+This command will:
+1. Load the sample project context.
+2. Load the sample story.
+3. Execute the agent workflow (Story Refiner → Architect → Test Strategist → Developer → Reviewer → Summary).
+4. Generate six markdown artifacts in the specified output directory.
+
+See the [Golden Path Demo](./examples/story_workflow/README.md) for more details.
+
+> **Note**: This workflow requires LLM API keys configured in your environment or `.env` file. All generated output is advisory and requires human review.
+
 ## Repository Structure
 
 ```text
