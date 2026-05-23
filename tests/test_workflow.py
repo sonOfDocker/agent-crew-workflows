@@ -74,7 +74,7 @@ class TestWorkflow:
         # Verify post-processing happened
         with open(fake_artifact, "r", encoding="utf-8") as f:
             content = f.read()
-        assert content.startswith("> AI-generated planning support.")
+        assert content.startswith("> Note: This artifact is AI-generated planning support.")
         assert "Initial Content" in content
 
         # Cleanup
@@ -96,7 +96,7 @@ class TestWorkflow:
         with open(test_file, "r", encoding="utf-8") as f:
             new_content = f.read()
             
-        assert new_content.startswith("> AI-generated planning support.")
+        assert new_content.startswith("> Note: This artifact is AI-generated planning support.")
         assert original_content in new_content
         
         # Verify it doesn't double-prepend
@@ -107,6 +107,37 @@ class TestWorkflow:
 
         # Cleanup
         os.remove(test_file)
+        os.rmdir(output_dir)
+
+    def test_post_process_all_artifacts(self):
+        """Test that all six expected artifact filenames are handled by post-processing."""
+        output_dir = "test_all_artifacts_processing"
+        crew = StoryReadinessCrew(output_dir=output_dir)
+        
+        expected_files = [
+            'story-refinement.md',
+            'architecture-notes.md',
+            'test-plan.md',
+            'implementation-plan.md',
+            'review-notes.md',
+            'final-summary.md'
+        ]
+        
+        for filename in expected_files:
+            file_path = os.path.join(output_dir, filename)
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(f"Content for {filename}")
+            
+        crew._post_process_artifacts()
+        
+        for filename in expected_files:
+            file_path = os.path.join(output_dir, filename)
+            with open(file_path, "r", encoding="utf-8") as f:
+                content = f.read()
+            assert content.startswith("> Note: This artifact is AI-generated planning support.")
+            assert f"Content for {filename}" in content
+            os.remove(file_path)
+            
         os.rmdir(output_dir)
 
     def test_invalid_inputs_fail(self):

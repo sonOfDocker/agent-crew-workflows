@@ -9,15 +9,22 @@ refine_story_task:
     Current date: {current_date}
     
     Your goal is to refine this story into a professional, implementation-ready document.
-    1. Clarify the core goal and value.
-    2. Define specific, testable acceptance criteria (AC).
-    3. Identify what is in-scope vs out-of-scope.
-    4. List any open questions or assumptions.
     
-    Follow the standard story template format.
-    IMPORTANT: Your output is advisory and requires human review.
+    You MUST include the following sections in your output:
+    - # Story Refinement
+    - ## Source Story Summary: Briefly summarize the original story.
+    - ## Refined Story Summary: Provide a clearer version of the story goal and expected outcome.
+    - ## Requirements: List functional and non-functional requirements identified.
+    - ## Acceptance Criteria Review: Review if existing AC are clear and complete; suggest improvements.
+    - ## Assumptions: List anything inferred but not verified. Do not present as facts.
+    - ## Open Questions: List questions requiring human clarification.
+    - ## Out of Scope: List items that should not be included.
+    - ## Readiness Assessment: State if ready, partially ready, or not ready.
+    - ## Human Review Needed: Specific decisions or confirmations needed.
+
+    IMPORTANT: Your output is advisory and requires human review. Do NOT claim the story is finished or implementation is complete.
   expected_output: >
-    A refined markdown story following the project's standard template, with clear AC and boundaries.
+    A refined markdown story with all required sections, clear AC, and identified boundaries.
   agent: story_refiner
   output_file: story-refinement.md
 
@@ -27,15 +34,20 @@ produce_architecture_notes_task:
     
     Using the project context: {project_context}
     
-    1. Identify affected files, modules, or components.
-    2. Propose a technical implementation approach.
-    3. Identify architectural risks or tradeoffs.
-    4. Determine if an ADR is required.
-    
-    Add these as 'Technical Notes' and 'Architecture' sections.
-    IMPORTANT: Your output is advisory and requires human review.
+    You MUST include the following sections in your output:
+    - # Architecture Notes
+    - ## Architecture Summary: Summarize the recommended architectural direction.
+    - ## Relevant Context: Reference important project context used.
+    - ## Impacted Areas: List likely files, packages, modules, or docs affected.
+    - ## Proposed Approach: Describe the recommended approach clearly.
+    - ## Alternatives Considered: List alternatives and why they were not selected.
+    - ## Risks and Tradeoffs: Identify risks, complexity, or maintainability concerns.
+    - ## Documentation Impact: State if docs, ADRs, or READMEs should be updated.
+    - ## Human Review Needed: List architectural decisions requiring human confirmation.
+
+    IMPORTANT: Your output is advisory and requires human review. Do NOT claim the design is finalized or implementation has started.
   expected_output: >
-    A technical design document including technical implementation notes and architectural assessment.
+    A technical design document with all required sections, providing clear architectural guidance.
   agent: architect
   output_file: architecture-notes.md
 
@@ -43,14 +55,20 @@ produce_test_plan_task:
   description: >
     Review the refined story and architecture notes.
     
-    1. Map every acceptance criterion to a specific validation method.
-    2. Identify critical edge cases.
-    3. Suggest unit and integration test scenarios.
-    4. Define any required manual verification steps.
-    
-    IMPORTANT: Your output is advisory and requires human review.
+    You MUST include the following sections in your output:
+    - # Test Plan
+    - ## Test Strategy Summary: Summarize the overall testing approach.
+    - ## Acceptance Criteria Mapping: Map each AC to one or more validation steps.
+    - ## Required Tests: List tests that MUST be implemented or executed.
+    - ## Optional Tests: List useful but non-required tests.
+    - ## Edge Cases: List failure modes, boundary cases, or unusual inputs.
+    - ## Suggested Test Commands: List expected commands (e.g., pytest).
+    - ## Required Evidence: List evidence needed (e.g., test output, artifacts).
+    - ## Human Review Needed: List test strategy decisions requiring human confirmation.
+
+    IMPORTANT: Your output is advisory and requires human review. Do NOT claim tests have passed.
   expected_output: >
-    A comprehensive test plan that includes a mapping of AC to validation methods and identified edge cases.
+    A comprehensive test plan with all required sections and AC mapping.
   agent: test_strategist
   output_file: test-plan.md
 
@@ -58,13 +76,20 @@ produce_implementation_plan_task:
   description: >
     Produce an implementation plan based on the refined story, architecture notes, and test strategy.
     
-    1. List the specific code and test changes needed to satisfy all AC.
-    2. Ensure the plan follows the proposed architecture approach.
-    3. Do NOT modify any source files. Only describe the plan.
-    
-    IMPORTANT: Your output is advisory and requires human review.
+    You MUST include the following sections in your output:
+    - # Implementation Plan
+    - ## Implementation Summary: Summarize the intended implementation approach.
+    - ## Planned File Changes: List expected files/directories to create or update.
+    - ## Step-by-Step Plan: Provide ordered, practical implementation steps.
+    - ## Test Execution Plan: Describe when and how tests should be run.
+    - ## Risks and Blockers: List implementation risks, dependencies, or blockers.
+    - ## Assumptions: List assumptions affecting the implementation plan.
+    - ## Completion Evidence Needed: List artifacts or results needed before completion.
+    - ## Human Approval Needed Before Changes: Clearly state required human approval.
+
+    IMPORTANT: Your output is advisory and requires human review. Do NOT claim work is complete or files have been modified.
   expected_output: >
-    An implementation plan containing a summary of planned code and test changes and AC mapping.
+    An implementation plan with all required sections, guiding the next steps of development.
   agent: developer
   output_file: implementation-plan.md
 
@@ -72,24 +97,42 @@ produce_review_notes_task:
   description: >
     Review all planning artifacts produced by the previous agents (refinement, architecture, test plan, implementation plan).
     
-    1. Verify each AC is addressed in the plan.
-    2. Check for adherence to architecture and project standards.
-    3. Look for any regressions or out-of-scope changes in the implementation plan.
-    4. Provide a recommendation (Approve/Revise).
-    
+    You MUST include the following sections in your output:
+    - # Review Notes
+    - ## Review Summary: Summarize the review outcome.
+    - ## Artifacts Reviewed: List the artifacts reviewed.
+    - ## Acceptance Criteria Status: List each AC and its status (e.g., satisfied, unclear).
+    - ## Evidence Reviewed: List the evidence available (e.g., state if no test output exists).
+    - ## Issues Found: List problems, inconsistencies, or unsupported claims.
+    - ## Required Changes: List changes required before approval.
+    - ## Suggested Improvements: List non-blocking improvements.
+    - ## Final Recommendation: Use one of: `approve for next step`, `changes requested`, `blocked`, or `needs human decision`.
+    - ## Human Decision Needed: List decisions the human owner must make.
+
     IMPORTANT: Your output is advisory and requires human review.
   expected_output: >
-    A detailed review report with a clear recommendation and AC verification checklist.
+    A detailed review report with all required sections and a clear recommendation.
   agent: reviewer
   output_file: review-notes.md
 
 produce_final_summary_task:
   description: >
     Summarize all generated outputs and list next human actions.
-    Make it clear that the workflow output is advisory and requires human review.
-    Include a summary of the context file used ({context_path}) and the story file used ({story_path}).
-    Also mention the output directory: {output_dir}
+    
+    You MUST include the following sections in your output:
+    - # Final Summary
+    - ## Workflow Run Summary: Summarize what the workflow did.
+    - ## Inputs Used: List context file ({context_path}) and story file ({story_path}).
+    - ## Artifacts Generated: List generated artifact file names.
+    - ## Key Findings: Summarize most important findings from the workflow.
+    - ## Open Questions: List unresolved questions from across artifacts.
+    - ## Required Human Actions: List actions the human owner should take next.
+    - ## Limitations: State limitations (e.g., no code changed, AI-generated).
+    - ## Recommended Next Step: Recommend one clear next step.
+
+    Include the output directory: {output_dir}
+    IMPORTANT: Your output is advisory and requires human review.
   expected_output: >
-    A final summary document listing next steps and advisory notice.
+    A final summary document with all required sections, providing a clear path forward.
   agent: reviewer
   output_file: final-summary.md

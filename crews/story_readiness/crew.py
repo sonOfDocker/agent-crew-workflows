@@ -119,8 +119,8 @@ class StoryReadinessCrew():
     def _post_process_artifacts(self):
         """Prepend advisory warning to all generated markdown artifacts."""
         advisory_note = (
-            "> AI-generated planning support. Human review is required before "
-            "implementation, verification, or completion decisions.\n\n"
+            "> Note: This artifact is AI-generated planning support. It is not proof of "
+            "implementation, test success, or story completion. Human review is required.\n\n"
         )
         
         expected_files = [
