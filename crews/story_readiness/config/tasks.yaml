@@ -6,6 +6,8 @@ refine_story_task:
     
     Using the project context: {project_context}
     
+    Current date: {current_date}
+    
     Your goal is to refine this story into a professional, implementation-ready document.
     1. Clarify the core goal and value.
     2. Define specific, testable acceptance criteria (AC).

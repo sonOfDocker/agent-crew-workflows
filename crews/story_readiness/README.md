@@ -1,12 +1,30 @@
 # Story Readiness Crew
 
-This directory is reserved for the future CrewAI implementation of the Story Readiness workflow.
-
-The initial project defines the workflow contracts in documentation before adding runtime automation here.
+This directory contains the Story Readiness workflow implementation.
 
 ## Purpose
 
-The Story Readiness crew will eventually evaluate whether a development story contains enough information for agents to execute it safely and consistently.
+The Story Readiness crew evaluates whether a development story contains enough information for agents to execute it safely and consistently.
+
+## Current Implementation: Input Loading
+
+The current implementation focuses on reusable input loading and validation, ensuring that both the project context bundle and the story input are valid markdown files before any orchestration begins.
+
+### Usage
+
+You can validate workflow inputs using the following command:
+
+```bash
+python -m crews.story_readiness.main --context-file <context_bundle_path> --story-file <story_file_path>
+```
+
+### Components
+
+- `inputs.py`: Contains the `WorkflowInputs` model and the `load_workflow_inputs` function.
+- `main.py`: A thin CLI wrapper for input validation.
+- `config/`: Directory for agent and task YAML configurations.
+
+## Workflow Goal
 
 This workflow is intended to help determine whether a story is ready for downstream agent roles such as:
 
