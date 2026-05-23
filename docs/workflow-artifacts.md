@@ -4,7 +4,7 @@ This document defines the standard markdown output artifacts produced by the MVP
 
 ## Global Artifact Rules
 
-All generated artifacts must follow these rules.
+All generated artifacts must follow these rules. Detailed guardrail rules can be found in [Workflow Guardrails](./workflow-guardrails.md).
 
 ### Rule 1: Human review warning
 Each artifact must include a visible note that the output is advisory and requires human review.
@@ -14,6 +14,9 @@ Each artifact must include a visible note that the output is advisory and requir
 ### Rule 2: No unsupported completion claims
 Artifacts must not claim implementation is complete, tests passed, acceptance criteria are satisfied, or pull requests are ready to merge unless actual evidence is provided.
 
+### Rule 2a: Evidence Reviewed section
+The `review-notes.md` artifact must include an `Evidence Reviewed` section that lists what evidence was available (or states if none).
+
 ### Rule 3: Assumptions must be labeled
 Any inferred or uncertain detail must be listed under an assumptions section or clearly labeled as an assumption.
 
@@ -22,6 +25,9 @@ Agents should identify missing information instead of silently inventing details
 
 ### Rule 5: Evidence must be separated from recommendations
 Artifacts must distinguish between evidence reviewed, recommendations, assumptions, open questions, and human decisions needed.
+
+### Rule 5a: Required Human Actions section
+The `final-summary.md` artifact must include a `Required Human Actions` section listing specific actions or decisions needed from the human owner.
 
 ### Rule 6: Acceptance criteria must remain visible
 Where relevant, artifacts should map recommendations back to acceptance criteria. The test plan and review notes must explicitly reference acceptance criteria.
@@ -37,6 +43,9 @@ The workflow uses the following stable artifact file names:
 - `implementation-plan.md`
 - `review-notes.md`
 - `final-summary.md`
+
+### Rule 9: Repository safety
+Generated artifacts must only be written to the configured output directory. The workflow runner must not modify source code or documentation files outside the output directory.
 
 ---
 

@@ -101,15 +101,15 @@ produce_review_notes_task:
     - # Review Notes
     - ## Review Summary: Summarize the review outcome.
     - ## Artifacts Reviewed: List the artifacts reviewed.
-    - ## Acceptance Criteria Status: List each AC and its status (e.g., satisfied, unclear).
+    - ## Acceptance Criteria Status: List each AC and its status (e.g., satisfied, partially satisfied, not satisfied, unclear, or not yet verifiable).
     - ## Evidence Reviewed: List the evidence available (e.g., state if no test output exists).
     - ## Issues Found: List problems, inconsistencies, or unsupported claims.
     - ## Required Changes: List changes required before approval.
     - ## Suggested Improvements: List non-blocking improvements.
-    - ## Final Recommendation: Use one of: `approve for next step`, `changes requested`, `blocked`, or `needs human decision`.
+    - ## Final Recommendation: Use ONLY one of: `approve for next step`, `changes requested`, `blocked`, `needs human decision`, or `not yet verifiable`.
     - ## Human Decision Needed: List decisions the human owner must make.
 
-    IMPORTANT: Your output is advisory and requires human review.
+    IMPORTANT: Your output is advisory and requires human review. Use cautious statuses when evidence is missing.
   expected_output: >
     A detailed review report with all required sections and a clear recommendation.
   agent: reviewer
@@ -117,7 +117,7 @@ produce_review_notes_task:
 
 produce_final_summary_task:
   description: >
-    Summarize all generated outputs and list next human actions.
+    Summarize all generated outputs and list required human actions.
     
     You MUST include the following sections in your output:
     - # Final Summary
@@ -126,12 +126,12 @@ produce_final_summary_task:
     - ## Artifacts Generated: List generated artifact file names.
     - ## Key Findings: Summarize most important findings from the workflow.
     - ## Open Questions: List unresolved questions from across artifacts.
-    - ## Required Human Actions: List actions the human owner should take next.
+    - ## Required Human Actions: List the specific human actions or decisions required at the documented checkpoints before moving to implementation.
     - ## Limitations: State limitations (e.g., no code changed, AI-generated).
     - ## Recommended Next Step: Recommend one clear next step.
 
     Include the output directory: {output_dir}
-    IMPORTANT: Your output is advisory and requires human review.
+    IMPORTANT: Your output is advisory and requires human review. Do NOT claim the story is complete or ready for merge.
   expected_output: >
     A final summary document with all required sections, providing a clear path forward.
   agent: reviewer
